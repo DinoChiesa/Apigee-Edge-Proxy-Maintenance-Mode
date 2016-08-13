@@ -7,13 +7,13 @@ This is an Apigee Edge Proxy that demonstrates how an admin could flip a system 
 
 In a typical configuration, Apigee Edge acts as a proxy to a backend API implementation. Requests arrive at Edge, Edge performs some validation or check (token, key, header validity, etc), and then if everything is ok, Edge proxies the request to the backend API implementation. 
 
-In some cases, an Operations team wants the ability to easily change a variable in Edge to put the system into "maintennce mode".  In that mode, the API proxy, operating at the edge of the network, does not proxy requests into the configured backend API implementation, but rather responds with a 503 status or similar, stating that the system is in maintenance mode.
+In some cases, an Operations team wants the ability to easily change a variable in Edge to put the system into "maintenance mode".  In that mode, the API proxy, operating at the edge of the network, does not proxy requests into the configured backend API implementation, but rather responds with a 503 status or similar, stating that the system is in maintenance mode.
 
 The idea is:
 - It should be easy to turn the maintenance mode on or off.
-- modifications to the maintenance mdoe setting should take effect relatively quickly.
+- modifications to the maintenance mode setting should take effect relatively quickly.
 - checks for maintenance mode should not affect performance at scale.
-- it should be possible to allow maintenance mode to affect different proxies or products. 
+- it should be possible to restrict the scope of maintenance mode to particular proxies or products. 
 
 ## Key-Value Maps  in Edge
 
