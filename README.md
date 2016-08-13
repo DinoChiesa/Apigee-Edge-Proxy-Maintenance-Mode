@@ -15,7 +15,7 @@ The idea is:
 - checks for maintenance mode should not affect performance at scale.
 - it should be possible to restrict the scope of maintenance mode to particular proxies or products. 
 
-## Key-Value Maps  in Edge
+## Key-Value Maps in Edge
 
 Apigee Edge includes a Key-Value map, which is a persistent store for environmental settings. At runtime, proxies can read from that Key-Value map, and modify behavior based on the values stored there.
 
@@ -25,6 +25,11 @@ The kind of information an ops team could store in the key-value  is wide open. 
 
 This proxy works by relying on a Key-Value map with a single key, "maint_mode".
 The value is a string.  If the string value is "true", then the proxy responds with a canned 503 response. If the string value is not true, then the proxy responds as normal.
+
+## A Demonstration
+
+[![Quick demonstration](http://img.youtube.com/vi/-FHWsV54nLM/0.jpg)](http://www.youtube.com/watch?v=-FHWsV54nLM "click to view the Demonstration")
+
 
 ## Testing it
 

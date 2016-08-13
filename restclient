@@ -83,3 +83,9 @@ Authorization: :edge-auth
 }
 
 
+
+# remove the KVM if no longer needed
+
+DELETE :mgmtserver/v1/o/:org/e/:env/keyvaluemaps/adminSettings
+Authorization: :edge-auth
+
