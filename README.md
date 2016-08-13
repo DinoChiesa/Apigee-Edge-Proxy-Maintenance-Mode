@@ -101,7 +101,7 @@ curl -i -u username:password -X GET \
  'https://api.enterprise.apigee.com/v1/o/ORGNAME'
  ```
 
-You want to see something like the following in the outpuyt of the above command:
+You want to see something like the following in the output of the above command:
 
 ```json
  "properties": {
@@ -122,16 +122,12 @@ If you don't see that, then you cannot use the admin calls, to turn on and off m
 The KVM must be created, before you can set values into it. You can do that like so: 
 
 ```
-curl -i -H 'content-type: application/json' \
+curl -i -H 'content-type: application/json' -X POST \
  -u username:password \
- -X POST \
  'https://api.enterprise.apigee.com/v1/o/ORGNAME/e/ENVIRONMENT/keyvaluemaps'\
  -d '{   
  "name" : "adminSettings",
- "entry" : [ {
-   "name" : "maint_mode",
-   "value" : "false"
-  } ]
+ "entry" : [ { "name" : "maint_mode", "value" : "false" } ]
 }'
 ```
 
