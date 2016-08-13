@@ -1,0 +1,9 @@
+<KeyValueMapOperations name='KVM-Get-stored_maint_mode' mapIdentifier='adminSettings'>
+  <Scope>environment</Scope>
+  <ExpiryTimeInSecs>10</ExpiryTimeInSecs>
+  <Get assignTo='stored_maint_mode' index='1'>
+    <Key>
+      <Parameter>maint_mode</Parameter>
+    </Key>
+  </Get>
+</KeyValueMapOperations>

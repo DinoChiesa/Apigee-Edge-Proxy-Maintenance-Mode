@@ -1,0 +1,8 @@
+<AssignMessage name='AV-maint_mode'>
+  <DisplayName>AV-maint_mode</DisplayName>
+  <AssignVariable>
+    <Name>maint_mode</Name>
+    <Ref>stored_maint_mode</Ref>
+    <Value>false</Value>
+  </AssignVariable>
+</AssignMessage>

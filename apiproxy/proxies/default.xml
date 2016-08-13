@@ -1,0 +1,60 @@
+<ProxyEndpoint name='default'>
+  <Description>Default Proxy</Description>
+  <HTTPProxyConnection>
+    <BasePath>/maintenance-mode</BasePath>
+    <Properties/>
+    <!-- <VirtualHost>https_vhost</VirtualHost> -->
+    <VirtualHost>secure</VirtualHost>
+  </HTTPProxyConnection>
+
+  <PreFlow name='PreFlow'>
+    <Request>
+      <!-- read the maint_mode setting from the Key-Value Map -->
+      <Step>
+        <Name>KVM-Get-stored_maint_mode</Name>
+      </Step>
+
+      <!-- Possibly assign a default value. -->
+      <Step>
+        <Name>AV-maint_mode</Name>
+      </Step>
+
+      <!-- now, act on the maint_mode setting -->
+      <Step>
+        <Condition>maint_mode = 'true'</Condition>
+        <Name>RF-maint_mode</Name>
+      </Step>
+    </Request>
+      <Response/>
+  </PreFlow>
+  <PostFlow name='PostFlow'>
+      <Request/>
+      <Response>
+        <Step><Name>AM-CleanResponseHeaders</Name></Step>
+      </Response>
+  </PostFlow>
+
+  <Flows>
+    <Flow name='test 1'>
+      <Description>just a test request, provides a loopback response</Description>
+      <Request>
+      </Request>
+      <Response>
+        <Step><Name>AM-Response</Name></Step>
+      </Response>
+      <Condition>(proxy.pathsuffix MatchesPath "/t1") and (request.verb = "GET")</Condition>
+    </Flow>
+
+    <Flow name='unknown request'>
+      <Request>
+        <Step><Name>RF-UnknownRequest</Name></Step>
+      </Request>
+      <Response/>
+    </Flow>
+
+  </Flows>
+
+  <!-- no target.  Loopback. -->
+  <RouteRule name='NoRouteRule'/>
+
+</ProxyEndpoint>

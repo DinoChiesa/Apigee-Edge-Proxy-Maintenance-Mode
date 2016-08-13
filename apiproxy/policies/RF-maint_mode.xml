@@ -1,0 +1,16 @@
+<RaiseFault name='RF-maint_mode'>
+  <DisplayName>RF-maint_mode</DisplayName>
+  <Description>Returns a canned response in case of maintenance mode</Description>
+  <IgnoreUnresolvedVariables>true</IgnoreUnresolvedVariables>
+  <FaultResponse>
+    <Set>
+      <Payload contentType='application/xml' variablePrefix='%' variableSuffix='#'><error>
+  <code>1540494</code>
+  <message>The system is in maintenance mode.</message>
+</error>
+        </Payload>
+      <StatusCode>503</StatusCode>
+      <ReasonPhrase>Service Unavailable</ReasonPhrase>
+    </Set>
+  </FaultResponse>
+</RaiseFault>

@@ -1,0 +1,85 @@
+# -*- restclient -*-
+#
+# URLs for tickling maintenance mode example proxy.
+# This works in emacs if you have restclient.el
+#
+# See https://github.com/pashky/restclient.el
+#
+#
+
+:edge-auth := (dino-netrc-basic-auth-header "api.enterprise.apigee.com")
+:mgmtserver = https://api.enterprise.apigee.com
+:env = test
+:org = cheeso
+:apiserver = https://cheeso-test.apigee.net
+
+
+# inquire org
+
+GET :mgmtserver/v1/o/:org
+Authorization: :edge-auth
+
+## To use the KVM Admin APIs here, you need to see this in the response:
+#
+# "properties": {
+#   "property": [
+#     {
+#       "value": "true",
+#       "name": "features.isCpsEnabled"
+#     }
+#   ]
+# },
+
+
+# inquire kvms
+
+GET :mgmtserver/v1/o/:org/e/:env/keyvaluemaps
+Authorization: :edge-auth
+
+# inquire the specific kvm we need
+
+GET :mgmtserver/v1/o/:org/e/:env/keyvaluemaps/adminSettings
+Authorization: :edge-auth
+
+
+# create a keyvaluemap in an environment, with some initial values
+
+POST :mgmtserver/v1/o/:org/e/:env/keyvaluemaps
+Authorization: :edge-auth
+content-type: application/json
+
+{   
+ "name" : "adminSettings",
+ "entry" : [ { "name" : "maint_mode", "value" : "false" } ]
+}
+
+
+# request a resource on the proxy
+
+GET :apiserver/maintenance-mode/t1
+
+
+# update the maint_mode to "true"
+
+POST :mgmtserver/v1/o/:org/e/:env/keyvaluemaps/adminSettings/entries/maint_mode
+Content-Type: application/json
+Authorization: :edge-auth
+
+{
+  "value": "true",
+  "name": "maint_mode"
+}
+
+
+# revert the maint_mode to "false"
+
+POST :mgmtserver/v1/o/:org/e/:env/keyvaluemaps/adminSettings/entries/maint_mode
+Content-Type: application/json
+Authorization: :edge-auth
+
+{
+  "value": "false",
+  "name": "maint_mode"
+}
+
+
