@@ -41,7 +41,7 @@ The value is a string.  If the string value is "true", then the proxy responds w
 3. invoke the proxy to verify normal behavior.
 
   ```
-  curl -i  -X GET 'https://ap-parityapi-test.apigee.net/maintenance-mode/t1'
+  curl -i  -X GET 'https://ORGNAME-ENVNAME.apigee.net/maintenance-mode/t1'
   ```
 
   You should see something like:
@@ -49,8 +49,8 @@ The value is a string.  If the string value is "true", then the proxy responds w
   ```xml
   <Message>
     <system-info>
-      <organization.name>ap-parityapi</organization.name>
-      <environment.name>main</environment.name>
+      <organization.name>ORGNAME</organization.name>
+      <environment.name>ENVNAME</environment.name>
       <system.time>Fri, 12 Aug 2016 19:54:25 UTC</system.time>
       <system.timestamp>1471031665146</system.timestamp>
     </system-info>
@@ -73,7 +73,7 @@ The value is a string.  If the string value is "true", then the proxy responds w
 5. invoke the proxy to verify the maintenance mode response.
 
   ```
-  curl -i  -X GET 'https://ap-parityapi-test.apigee.net/maintenance-mode/t1'
+  curl -i  -X GET 'https://ORGNAME-ENVNAME.apigee.net/maintenance-mode/t1'
   ```
 
   You should see something like:
